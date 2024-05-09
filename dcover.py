@@ -115,7 +115,7 @@ class D_Cover:
 
         """
 
-        # TODO: support indexing into any columns
+        #Index each column
         di = np.array(range(1, data.shape[1]))
         indexless_data = data[:, di]
         n_dims = indexless_data.shape[1]  #the nuber of columns
