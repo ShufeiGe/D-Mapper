@@ -62,7 +62,7 @@ _class_ kmapper.D_Mapper(_verbose=0_)
 ### Parameters
 
 - **lens: Numpy Array, default = None**
-	Lower dimensional representation of data. In general will be output of fit_transform.
+	Lower dimensional representation of data. In general, it will be output of fit_transform.
     
 - **X: Numpy Array, default = None** 
 	Original data or data to run clustering on. If None, then use lens as default. X can be a SciPy sparse matrix.
@@ -77,10 +77,10 @@ _class_ kmapper.D_Mapper(_verbose=0_)
 	Nerve builder implementing __call__(nodes) API.
     
 - **precomputed: _Boolean_, default = False** 
-	Tell Mapper whether the data that you are clustering on is a precomputed distance matrix. Same as KeplerMapper.
+	Whether the data to be clustered is a precomputed distance matrix. Same as KeplerMapper.
     
 - **remove_duplicate_nodes: _Boolean_, default = False** 
-	Removes duplicate nodes before edges are determined. A node is considered to be duplicate if it has exactly the same set of points as another node.
+	Remove duplicate nodes before edges are determined. A node is considered to be duplicate if it has exactly the same set of points as another node.
 
 ### Methods
 All methods in D_Mapper can be used the same as in the kmapper.
@@ -88,10 +88,10 @@ All methods in D_Mapper can be used the same as in the kmapper.
 | Method  |  Description |
 |---|---|
 |[`__init__`](https://kepler-mapper.scikit-tda.org/en/latest/reference/stubs/kmapper.KeplerMapper.html#kmapper.KeplerMapper.__init__ "kmapper.KeplerMapper.__init__")([verbose])|Constructor for KeplerMapper class.|
-|[`data_from_cluster_id`](https://kepler-mapper.scikit-tda.org/en/latest/reference/stubs/kmapper.KeplerMapper.html#kmapper.KeplerMapper.data_from_cluster_id "kmapper.KeplerMapper.data_from_cluster_id")(cluster_id, graph, data)|Returns the original data of each cluster member for a given cluster ID|
-|[`fit_transform`](https://kepler-mapper.scikit-tda.org/en/latest/reference/stubs/kmapper.KeplerMapper.html#kmapper.KeplerMapper.fit_transform "kmapper.KeplerMapper.fit_transform")(X[, projection, scaler, ...])|Same as .project() but accepts lists for arguments so you can chain.|
+|[`data_from_cluster_id`](https://kepler-mapper.scikit-tda.org/en/latest/reference/stubs/kmapper.KeplerMapper.html#kmapper.KeplerMapper.data_from_cluster_id "kmapper.KeplerMapper.data_from_cluster_id")(cluster_id, graph, data)|Return the original data of each cluster member for a given cluster ID|
+|[`fit_transform`](https://kepler-mapper.scikit-tda.org/en/latest/reference/stubs/kmapper.KeplerMapper.html#kmapper.KeplerMapper.fit_transform "kmapper.KeplerMapper.fit_transform")(X[, projection, scaler, ...])|Same as .project() but accept lists for arguments so you can chain.|
 |[`map`](https://kepler-mapper.scikit-tda.org/en/latest/reference/stubs/kmapper.KeplerMapper.html#kmapper.KeplerMapper.map "kmapper.KeplerMapper.map")(lens[, X, clusterer, cover, nerve, ...])|Apply Mapper algorithm on this projection and build a simplicial complex.|
-|[`project`](https://kepler-mapper.scikit-tda.org/en/latest/reference/stubs/kmapper.KeplerMapper.html#kmapper.KeplerMapper.project "kmapper.KeplerMapper.project")(X[, projection, scaler, distance_matrix])|Creates the projection/lens from a dataset.|
+|[`project`](https://kepler-mapper.scikit-tda.org/en/latest/reference/stubs/kmapper.KeplerMapper.html#kmapper.KeplerMapper.project "kmapper.KeplerMapper.project")(X[, projection, scaler, distance_matrix])|Create the projection/lens from a dataset.|
 |[`visualize`](https://kepler-mapper.scikit-tda.org/en/latest/reference/stubs/kmapper.KeplerMapper.html#kmapper.KeplerMapper.visualize "kmapper.KeplerMapper.visualize")(graph[, color_values, ...])|Generate a visualization of the simplicial complex mapper output.|
 
 ## kmapper.evaluate.compute_SC_adj(data, lens, graph, Cover ,type , cluster = cluster.DBSCAN(eps=0.5, min_samples=3), N = 100, alpha=.85,  w1 = 0.5, w2 =0.5, precompute = False)
