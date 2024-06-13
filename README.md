@@ -1,5 +1,5 @@
 # D-Mapper
-D-Mapper is a distribution-guided Mapper algorithm, it implements the a distribution-guided Mapper algorithm described in Yuyang Tao, Shufei Ge, A distribution-guided Mapper algorithm, 2024. The D-Mapper can provide flexible interval construction base on mixture distribution of projected data.  
+D-Mapper is a distribution-guided Mapper algorithm, it implements the distribution-guided Mapper algorithm described in Yuyang Tao, Shufei Ge, A distribution-guided Mapper algorithm, 2024. The D-Mapper can provide flexible interval construction base on the mixture distribution of projected data.  
 
 This algorithm is programmed as an extension to the KeplerMapper ([Background — KeplerMapper 2.0.1 documentation (scikit-tda.org)](https://kepler-mapper.scikit-tda.org/en/latest/theory.html)) . We provide three extra modules: dcover, dmapper and evaluation. 
 
