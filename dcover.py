@@ -115,7 +115,7 @@ class D_Cover:
 
         """
 
-        #Index each column
+        # TODO: support indexing into any columns
         di = np.array(range(1, data.shape[1]))
         indexless_data = data[:, di]
         n_dims = indexless_data.shape[1]  #the nuber of columns
@@ -252,6 +252,9 @@ class D_Cover:
         bounds = self._compute_bounds(indexless_data)
         ranges = bounds[1] - bounds[0]
 
+        interval_table[0][0] = bounds[0]
+        interval_table[1][-1] = bounds[1]
+        
         # (n-1)/n |range|
         inner_range = ((self.n_cubes - 1) / self.n_cubes) * ranges
         inset = (ranges - inner_range) / 2

@@ -528,42 +528,41 @@ class D_Mapper(object):
 
         for i, hypercube in enumerate(self.cover.transform(lens)):
 
-            # If at least min_cluster_samples samples inside the hypercube
-            if hypercube.shape[0] >= min_cluster_samples:
-                # Cluster the data point(s) in the cube, skipping the id-column
-                # Note that we apply clustering on the inverse image (original data samples) that fall inside the cube.
-                ids = [int(nn) for nn in hypercube[:, 0]]
-                X_cube = X[ids]
+        # If at least min_cluster_samples samples inside the hypercube
 
-                fit_data = X_cube[:, 1:]
-                if precomputed:
-                    fit_data = fit_data[:, ids]
+            # Cluster the data point(s) in the cube, skipping the id-column
+            # Note that we apply clustering on the inverse image (original data samples) that fall inside the cube.
+            ids = [int(nn) for nn in hypercube[:, 0]]
+            X_cube = X[ids]
 
-                cluster_predictions = clusterer.fit_predict(fit_data)
+            fit_data = X_cube[:, 1:]
+            if precomputed:
+                fit_data = fit_data[:, ids]
 
-                if self.verbose > 1:
-                    print(
-                        "   > Found %s clusters in hypercube %s."
-                        % (
-                            np.unique(
-                                cluster_predictions[cluster_predictions > -1]
-                            ).shape[0],
-                            i,
-                        )
+            cluster_predictions = clusterer.fit_predict(fit_data)
+
+            if self.verbose > 1:
+                print(
+                    "   > Found %s clusters in hypercube %s."
+                    % (
+                        np.unique(
+                            cluster_predictions
+                        ).shape[0],
+                        i,
+                    )
+                )
+
+            for pred in np.unique(cluster_predictions):
+                # if not predicted as noise
+                if not np.isnan(pred):
+                    cluster_id = "cube{}_cluster{}".format(i, int(pred))
+
+                    nodes[cluster_id] = (
+                        hypercube[:, 0][cluster_predictions == pred]
+                        .astype(int)
+                        .tolist()
                     )
 
-                for pred in np.unique(cluster_predictions):
-                    # if not predicted as noise
-                    if pred != -1 and not np.isnan(pred):
-                        cluster_id = "cube{}_cluster{}".format(i, int(pred))
-
-                        nodes[cluster_id] = (
-                            hypercube[:, 0][cluster_predictions == pred]
-                            .astype(int)
-                            .tolist()
-                        )
-            elif self.verbose > 1:
-                print("Cube_%s is empty.\n" % (i))
 
         if remove_duplicate_nodes:
             nodes = self._remove_duplicate_nodes(nodes)
